@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+{% block main %}
+ <div class = "slideshow-container">
+    <div class = "slides">
+        <img class = "show" src = "{{url_for('static',filename = 'slide1.jpg')}}" align = "middle" >
+    </div>
+    <div class = "slides">
+        <img class = "show" src = "{{url_for('static',filename = 'slide2.jpg')}}" align = "middle" >
+    </div>
+    <div class = "slides">
+        <img class = "show" src = "{{url_for('static',filename = 'slide3.jpg')}}" align = "middle" >
+    </div>
+    <div class = "slides">
+        <img class = "show" src = "{{url_for('static',filename = 'slide4.jpg')}}" align = "middle" >
+    </div>
+ </div>
+
+ <table>
+ <form class = products action = "/" method = "get">
+    {% for product in products %}
+    <div class = product-container>
+    <a href="{{ url_for('product_detail', product_id = product.product_id) }}" class = "item">
+    <div class = product>
+        <img class = "item" src="{{url_for('static', filename= (product.product_id|string)  +'.jpg' )}}">
+        <div class = name >{{product["name"]}}</div>
+        <div class = price>Rs. {{product["price"]}} <b>/</b> kg</div>
+    </div>
+    </a>
+    </div>
+
+    {%endfor%}
+</form>
+</table>
+<div class = products action = "/" method = "post">
+    {%if nproducts%}
+    <p class = search-header> Search results for {{search}} :</p>
+    {% for product in nproducts %}
+    <div class = product-container>
+        <a href="{{ url_for('product_detail', product_id = product.product_id) }}" class = "item">
+            <div class = product>
+                <img class = "item" src="{{url_for('static', filename= (product.product_id|string)  +'.jpg' )}}">
+                <div class = name >{{product["name"]}}</div>
+                <div class = price>Rs. {{product["price"]}} <b>/</b> kg</div>
+            </div>
+            </a>
+    </div>
+    {%endfor%}
+    {%endif%}
+</div>
+</table>
+<script>
+// From w3schools HOWTO section
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("slides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+{% endblock %}

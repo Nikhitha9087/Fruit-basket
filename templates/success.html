@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   success
+{% endblock %}
+{% block main %}
+    <div class = "exit">Your order has been sucessfully placed!</div>
+    <form method = "get" action = "/checkout">
+    <button type = "submit" class = "submit" id = "exit">Continue shopping</button>
+    </form>
+
+{% endblock %}

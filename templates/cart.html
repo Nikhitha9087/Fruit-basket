@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cart
+{% endblock %}
+{% block main %}
+<form  action = "/checkout" method = "post">
+    <div id = "Shopcart">Shopping Cart</div>
+    {%if not cart%}
+    <div class = "empty">Cart is empty.</div>
+    {%endif%}
+    <table>
+    {% for i in cart %}
+    <tr id = "crow">
+        <td class = row_cart id = "carti"><img class = cart src="{{url_for('static', filename= (i.product_id|string)  +'.jpg' )}}"></td>
+        <td class = row_cart id = "cartn">{{i["name"]}}</td>
+        <td class = row_cart id = "cartq"> {{i["total_quantity"]}}</td>
+        <td class = row_cart id = "cartp">Rs. {{i["price"]}} / kg</div>
+        <td class = row_cart id = "cartr"><a href="/remove_from_cart/{{ i['product_id'] }}"><i id = "remove" class="fa fa-times" aria-hidden="true"></i></a></td>
+     </tr>
+    {%endfor%}
+    <button type = "submit" class = "submit" id = "checkout" >Checkout(Rs.{{total}})</button>
+   </form>
+   </table>
+{% endblock %}

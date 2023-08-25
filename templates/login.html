@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <body style ="background:url({{url_for('static',filename= 'fruits.jpg')}}); background-repeat: no-repeat; background-size: cover">
+        <form action="/login" method="post">
+        <div class = "login">
+            <div class = "container">
+                <div class = "top-header">
+                    <header>Login</header>
+                </div>
+
+                <div class = "input-field">
+                    <input type = "text" autocomplete = "off" class = "input" placeholder = "Username" name = "username">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+                <div class = "input-field">
+                    <input type = "password" class = "input" placeholder = "Password" name = "password">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </div>
+                <div class = "input-field">
+                    <button type = "submit" class = "submit">Log in</button>
+                </div>
+
+                <div class = "bottom">
+                    <span>Don't have an account? </span><a class = "create" href = "/register" class ="link">Create one</a>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+
+{% endblock %}
